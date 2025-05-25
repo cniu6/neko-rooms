@@ -3,7 +3,7 @@ name: "CI for builds"
 on:
   push:
     branches:
-      - pause_api
+      - ['*']
     tags:
       - 'v*'
 
