@@ -10,7 +10,34 @@ on:
 jobs:
   build-client:
     name: Build Client Artifacts
-    uses: ./.github/workflows/client_build.yml
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: 'client/package-lock.json'
+
+      - name: Install dependencies
+        working-directory: ./client
+        run: npm ci
+
+      - name: Build client
+        working-directory: ./client
+        run: npm run build
+
+      - name: Upload client dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: client
+          path: client/dist
+          retention-days: 1
 
   build-and-push:
     name: Build and Push Docker Image
