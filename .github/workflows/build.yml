@@ -52,6 +52,13 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_ACCESS_TOKEN }}
+
       - name: Remove client stage from Dockerfile
         # Change dockerfile: remove first stage - everything between # STAGE 1 and # STAGE 2
         # Replace "--from=frontend /src/dist/" with "./client/dist/"
@@ -59,12 +66,12 @@ jobs:
           sed -i '/# STAGE 1/,/# STAGE 2/d' ./Dockerfile
           sed -i 's/--from=frontend \/src\/dist\//.\/client\/dist\//g' ./Dockerfile
 
-      - name: Build and push
-        uses: docker/build-push-action@v6
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
         with:
-          context: ./
+          context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ghcr.io/${{ github.repository_owner }}/your-image-name:tag
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           cache-from: type=gha
