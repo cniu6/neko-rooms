@@ -7,7 +7,7 @@ networks:
 
 services:
   neko-rooms:
-    image: "cniu6/neko-rooms:latest"
+    image: "ghcr.io/cniu6/neko-rooms:latest"
     restart: "unless-stopped"
     environment:
       - "TZ=Europe/Vienna"

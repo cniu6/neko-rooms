@@ -28,7 +28,7 @@ rollback() {
     cd /opt/neko-rooms || true
     docker-compose down || true
 
-    docker rmi cniu6/neko-rooms:latest -f || true
+    docker rmi ghcr.io/cniu6/neko-rooms:latest -f || true
     rm -f docker-compose.yml
     cd ~ || true
   fi
@@ -539,7 +539,7 @@ networks:
 
 services:
   neko-rooms:
-    image: "cniu6/neko-rooms:latest"
+    image: "ghcr.io/cniu6/neko-rooms:latest"
     restart: "unless-stopped"
     environment:
       - "TZ=${TIMEZONE}"
