@@ -98,7 +98,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/neko-rooms:latest
+          tags: |
+            ghcr.io/cniu6/neko-rooms:latest
+            zerohh666/neko-rooms:latest
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           cache-from: type=gha
