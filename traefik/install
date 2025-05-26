@@ -219,12 +219,12 @@ echo "[Y] Creating env..."
 
 mkdir -p "./config"
 
-wget -O "./traefik.yml" "https://raw.githubusercontent.com/m1k1o/neko-rooms/master/traefik/traefik.yml"
+wget -O "./traefik.yml" "https://raw.githubusercontent.com/cniu6/neko-rooms/pause_api/traefik/traefik.yml"
 sed -i "s/yourname@example.com/${TRAEFIK_EMAIL}/g" "./traefik.yml"
 
-wget -O "./config/middlewares.yml" "https://raw.githubusercontent.com/m1k1o/neko-rooms/master/traefik/config/middlewares.yml"
-wget -O "./config/routers.yml" "https://raw.githubusercontent.com/m1k1o/neko-rooms/master/traefik/config/routers.yml"
-wget -O "./config/tls.yml" "https://raw.githubusercontent.com/m1k1o/neko-rooms/master/traefik/config/tls.yml"
+wget -O "./config/middlewares.yml" "https://raw.githubusercontent.com/cniu6/neko-rooms/pause_api/traefik/config/middlewares.yml"
+wget -O "./config/routers.yml" "https://raw.githubusercontent.com/cniu6/neko-rooms/pause_api/traefik/config/routers.yml"
+wget -O "./config/tls.yml" "https://raw.githubusercontent.com/cniu6/neko-rooms/pause_api/traefik/config/tls.yml"
 
 touch "./acme.json"
 chmod 600 "./acme.json"
@@ -235,7 +235,7 @@ echo "[Y] Downloading traefik config..."
 # Download docker compose file
 #
 
-wget -O "./docker-compose.yml" "https://raw.githubusercontent.com/m1k1o/neko-rooms/master/traefik/docker-compose.yml"
+wget -O "./docker-compose.yml" "https://raw.githubusercontent.com/cniu6/neko-rooms/pause_api/traefik/docker-compose.yml"
 
 # docker-compose was renamed to docker compose, support both
 if docker-compose --version > /dev/null 2>&1; then

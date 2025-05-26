@@ -28,7 +28,7 @@ rollback() {
     cd /opt/neko-rooms || true
     docker-compose down || true
 
-    docker rmi m1k1o/neko-rooms:latest -f || true
+    docker rmi cniu6/neko-rooms:latest -f || true
     rm -f docker-compose.yml
     cd ~ || true
   fi
@@ -521,7 +521,7 @@ echo -e "${AQUA}\n==================================================${NC}"
 
 # Clone Neko Rooms repository
 echo -e "${YELLOW}Cloning Neko Rooms repository...${NC}"
-git clone https://github.com/m1k1o/neko-rooms.git /opt/neko-rooms || echo -e "${GREEN}Neko Rooms repository already exists. Skipping...${NC}"
+git clone -b pause_api --single-branch https://github.com/cniu6/neko-rooms.git /opt/neko-rooms || echo -e "${GREEN}Neko Rooms repository already exists. Skipping...${NC}"
 cd /opt/neko-rooms
 CLONE_NEKO_ROOMS=true
 echo -e "${AQUA}\n==================================================${NC}"
@@ -538,7 +538,7 @@ networks:
 
 services:
   neko-rooms:
-    image: "m1k1o/neko-rooms:latest"
+    image: "cniu6/neko-rooms:latest"
     restart: "unless-stopped"
     environment:
       - "TZ=${TIMEZONE}"
