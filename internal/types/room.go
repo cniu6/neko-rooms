@@ -26,6 +26,7 @@ type RoomEntry struct {
 	IsReady        bool              `json:"is_ready"`
 	Status         string            `json:"status"`
 	Created        time.Time         `json:"created"`
+	Paused         bool              `json:"paused"`
 	Labels         map[string]string `json:"labels,omitempty"`
 
 	ContainerLabels map[string]string `json:"-"` // for internal use

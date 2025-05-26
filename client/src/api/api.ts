@@ -261,6 +261,12 @@ export interface RoomEntry {
      */
     'running'?: boolean;
     /**
+    * 
+    * @type {boolean}
+    * @memberof RoomEntry
+    */
+    'paused'?: boolean;
+    /**
      * 
      * @type {string}
      * @memberof RoomEntry

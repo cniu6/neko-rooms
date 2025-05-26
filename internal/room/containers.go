@@ -32,6 +32,7 @@ func (manager *RoomManagerCtx) containerToEntry(container dockerTypes.Container)
 		Running:        container.State == "running",
 		IsReady:        manager.events.IsRoomReady(roomId) || strings.Contains(container.Status, "healthy"),
 		Status:         container.Status,
+		Paused:         strings.Contains(container.Status, "Paused"),
 		Created:        time.Unix(container.Created, 0),
 		Labels:         labels.UserDefined,
 

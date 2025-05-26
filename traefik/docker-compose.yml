@@ -33,7 +33,7 @@ services:
       - "./config:/config"
 
   neko-rooms:
-    image: "ghcr.io/cniu6/neko-rooms:latest"
+    image: "zerohh666/neko-rooms:latest"
     restart: "unless-stopped"
     env_file:
       - ".env"
