@@ -246,9 +246,9 @@ func (manager *RoomManagerCtx) Create(ctx context.Context, settings types.RoomSe
 		return "", fmt.Errorf("invalid container name, must match %s", dockerNames.RestrictedNameChars)
 	}
 
-	if in, _ := utils.ArrayIn(settings.NekoImage, manager.config.NekoImages); !in {
-		return "", fmt.Errorf("invalid neko image")
-	}
+	// if in, _ := utils.ArrayIn(settings.NekoImage, manager.config.NekoImages); !in {
+	// 	return "", fmt.Errorf("invalid neko image")
+	// }
 
 	isPrivilegedImage, _ := utils.ArrayIn(settings.NekoImage, manager.config.NekoPrivilegedImages)
 
