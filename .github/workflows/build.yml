@@ -79,12 +79,12 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GHCR_ACCESS_TOKEN }}
+      # - name: Log in to GitHub Container Registry
+      #   uses: docker/login-action@v3
+      #   with:
+      #     registry: ghcr.io
+      #     username: ${{ github.actor }}
+      #     password: ${{ secrets.GHCR_ACCESS_TOKEN }}
 
       - name: Remove client stage from Dockerfile
         # Change dockerfile: remove first stage - everything between # STAGE 1 and # STAGE 2
@@ -99,7 +99,6 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/cniu6/neko-rooms:latest
             zerohh666/neko-rooms:latest
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7

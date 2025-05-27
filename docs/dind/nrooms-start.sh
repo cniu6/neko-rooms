@@ -67,4 +67,4 @@ docker run -t \
     -l "traefik.http.routers.neko-rooms.entrypoints=web" \
     -l 'traefik.http.routers.neko-rooms.rule=HostRegexp(`{host:.+}`)' \
     -l 'traefik.http.routers.neko-rooms.priority=1' \
-    m1k1o/neko-rooms:latest;
+    zerohh666/neko-rooms:latest;
