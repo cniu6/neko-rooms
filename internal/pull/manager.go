@@ -16,7 +16,6 @@ import (
 	"github.com/rs/zerolog/log"
 
 	"github.com/m1k1o/neko-rooms/internal/types"
-	"github.com/m1k1o/neko-rooms/internal/utils"
 )
 
 type PullManagerCtx struct {
@@ -75,9 +74,9 @@ func (manager *PullManagerCtx) setDone() {
 }
 
 func (manager *PullManagerCtx) Start(request types.PullStart) error {
-	if in, _ := utils.ArrayIn(request.NekoImage, manager.images); !in {
-		return fmt.Errorf("unknown neko image")
-	}
+	// if in, _ := utils.ArrayIn(request.NekoImage, manager.images); !in {
+	// 	return fmt.Errorf("unknown neko image")
+	// }
 
 	ctx, cancel := context.WithCancel(context.Background())
 	if !manager.tryInitialize(cancel) {
