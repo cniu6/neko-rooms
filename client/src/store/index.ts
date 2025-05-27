@@ -132,6 +132,7 @@ export default new Vuex.Store({
       commit('ROOMS_PUT', {
         id: roomId,
         running: true,
+        paused: true,
         status: 'Paused',
       });
     },
@@ -140,6 +141,7 @@ export default new Vuex.Store({
       commit('ROOMS_PUT', {
         id: roomId,
         running: true,
+        paused: false,
         status: 'Up',
       });
     },

@@ -166,9 +166,13 @@ func (e *events) Start() {
 				case "destroy":
 					action = types.RoomEventDestroyed
 				case "pause":
+					e.setRoomNotReady(roomId)
+					e.runningRooms.Dec()
 					action = types.RoomEventPaused
 				case "unpause":
 					action = types.RoomEventUnpaused
+					e.waitForRoomReady(roomId, labels)
+					e.runningRooms.Inc()
 				}
 
 				e.broadcast(types.RoomEvent{
