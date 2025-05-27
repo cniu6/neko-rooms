@@ -22,6 +22,7 @@ type entry struct {
 	id      string
 	running bool
 	ready   bool
+	paused  bool
 	handler http.Handler
 }
 
@@ -265,6 +266,8 @@ func (p *ProxyManagerCtx) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			RoomNotFound(w, r, p.waitEnabled)
 		} else if !proxy.running {
 			RoomNotRunning(w, r, p.waitEnabled)
+		} else if proxy.paused {
+			RoomPaused(w, r, p.waitEnabled)
 		} else {
 			RoomNotReady(w, r, p.waitEnabled)
 		}
