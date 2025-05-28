@@ -131,6 +131,18 @@ func (p *ProxyManagerCtx) Start() {
 						id:      msg.ID,
 						running: false,
 					})
+				case types.RoomEventPaused:
+					p.handlers.Insert(path, &entry{
+						id:      msg.ID,
+						running: false,
+						paused:  true,
+					})
+				case types.RoomEventUnpaused:
+					p.handlers.Insert(path, &entry{
+						id:      msg.ID,
+						running: true,
+						ready:   false, // 等待就绪检查
+					})
 				case types.RoomEventDestroyed:
 					p.handlers.Remove(path)
 				}
@@ -168,6 +180,7 @@ func (p *ProxyManagerCtx) Refresh() error {
 			id:      room.ID,
 			running: room.Running,
 			ready:   room.IsReady,
+			paused:  room.Paused,
 		}
 
 		// if proxying is enabled and room is ready
